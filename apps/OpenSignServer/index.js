@@ -120,9 +120,6 @@ export const config = {
   appName: appName,
   allowClientClassCreation: false,
   allowExpiredAuthDataToken: false,
-  enableInsecureAuthAdapters: false,
-  databaseOptions: { allowPublicExplain: false },
-  encodeParseObjectInCloudFunction: true,
   ...(isMailAdapter === true
     ? {
         emailAdapter: {

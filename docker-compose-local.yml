@@ -13,7 +13,8 @@ services:
     env_file: .env.prod
     environment:
       - NODE_ENV=production
-      - SERVER_URL=${HOST_URL:-https://localhost:3001}/api/app
+      - SERVER_URL=http://YOUR_SERVER_IP:3001/api/app
+      - PUBLIC_URL=http://YOUR_SERVER_IP:3001
     networks:
       - app-network
   mongo:
@@ -32,9 +33,11 @@ services:
     container_name: OpenSign-container
     depends_on:
       - server
-    env_file: .env.prod  
+    env_file: .env.prod
     ports:
       - "3000:3000"
+    environment:
+      - REACT_APP_SERVERURL=http://YOUR_SERVER_IP:3001/api/app
     networks:
       - app-network
   caddy:
@@ -43,16 +46,14 @@ services:
     ports:
       - "3001:3001"
       - "80:80"
-      - "443:443"
-      - "443:443/udp"
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile.local:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
     networks:
       - app-network
     environment:
-      - HOST_URL=${HOST_URL:-localhost:3001}
+      - HOST_URL=http://YOUR_SERVER_IP:3001
 networks:
   app-network:
     driver: bridge

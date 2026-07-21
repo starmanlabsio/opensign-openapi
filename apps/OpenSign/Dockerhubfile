@@ -5,7 +5,7 @@ FROM node:22.14.0
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json first to leverage Docker cache
-COPY apps/OpenSign/package*.json ./
+COPY apps/OpenSign/package.json ./
 
 # Install application dependencies
 RUN npm install
