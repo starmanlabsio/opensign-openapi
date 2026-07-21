@@ -13,8 +13,8 @@ services:
     env_file: .env.prod
     environment:
       - NODE_ENV=production
-      - SERVER_URL=http://YOUR_SERVER_IP:3001/api/app
-      - PUBLIC_URL=http://YOUR_SERVER_IP:3001
+      - SERVER_URL=${HOST_URL:-http://localhost:3001}/api/app
+      - PUBLIC_URL=${HOST_URL:-http://localhost:3001}
     networks:
       - app-network
   mongo:
@@ -36,8 +36,6 @@ services:
     env_file: .env.prod
     ports:
       - "3000:3000"
-    environment:
-      - REACT_APP_SERVERURL=http://YOUR_SERVER_IP:3001/api/app
     networks:
       - app-network
   caddy:
@@ -53,7 +51,7 @@ services:
     networks:
       - app-network
     environment:
-      - HOST_URL=http://YOUR_SERVER_IP:3001
+      - HOST_URL=${HOST_URL:-localhost:3001}
 networks:
   app-network:
     driver: bridge
