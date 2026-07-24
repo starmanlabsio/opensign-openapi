@@ -23,7 +23,6 @@ endif
 		echo "Invalid choice"; exit 1; \
 	fi
 	cp .env .env.prod
-	cd apps/OpenSign && cp ../../.env .env && npm install && npm run build
 	HOST_URL=${HOST_URL} docker compose up --build --force-recreate
 
 run:

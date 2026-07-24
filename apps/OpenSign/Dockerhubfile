@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY apps/OpenSign/package.json apps/OpenSign/package-lock.json ./
 
 # Install application dependencies
-RUN npm ci
+RUN npm ci && npm audit --audit-level=high
 
 # Copy the current directory contents into the container
 COPY apps/OpenSign/ .

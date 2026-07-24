@@ -158,6 +158,29 @@ export const config = {
   auth: { google: { clientId: process.env.GOOGLE_CLIENT_ID }, sso: SSOAuth },
   // for fix Adapter prototype don't match expected prototype
   push: { queueOptions: { disablePushWorker: true } },
+  fileUpload: {
+    allowedFileUrlDomains: [],
+  },
+  pages: {
+    encodePageParamHeaders: false,
+  },
+  readOnlyMasterKeyIps: [],
+  requestComplexity: {
+    includeDepth: -1,
+    includeCount: -1,
+    subqueryDepth: -1,
+    queryDepth: -1,
+    graphQLDepth: -1,
+    graphQLFields: -1,
+    batchRequestLimit: -1,
+  },
+  protectedFieldsOwnerExempt: true,
+  protectedFieldsTriggerExempt: false,
+  protectedFieldsSaveResponseExempt: true,
+  installation: {
+    duplicateDeviceTokenActionEnforceAuth: false,
+  },
+  allowAggregationForReadOnlyMasterKey: true,
 };
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
