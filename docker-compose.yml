@@ -1,8 +1,6 @@
 services:
   server:
-    build:
-      context: .
-      dockerfile: apps/OpenSignServer/Dockerhubfile
+    image: opensign/opensignserver:main
     container_name: OpenSignServer-container
     volumes:
       - opensign-files:/usr/src/app/files
@@ -14,6 +12,7 @@ services:
     environment:
       - NODE_ENV=production
       - SERVER_URL=${HOST_URL:-https://localhost:3001}/api/app
+      - PUBLIC_URL=${HOST_URL:-https://localhost:3001}
     networks:
       - app-network
   mongo:
@@ -26,9 +25,7 @@ services:
     networks:
       - app-network
   client:
-    build:
-      context: .
-      dockerfile: apps/OpenSign/Dockerhubfile
+    image: opensign/opensign:main
     container_name: OpenSign-container
     depends_on:
       - server
